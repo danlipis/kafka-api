@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>Desafio Itau - Kafka</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		
+		<script type="text/javascript">
+		$(document).ready(function() {
+			$("#salvar").click(function() {
+
+				var pessoa = new Object();
+				pessoa.nome = $('#nome').val();
+				pessoa.idade = $('#idade').val();
+
+				if (pessoa.nome && pessoa.idade) {
+					$.ajax({
+						url : 'http://34.229.110.61:8080/kafka',
+						type : 'POST',
+						contentType : "application/json; charset=utf-8",
+						data : JSON.stringify(pessoa),
+						success : function(data, textStatus, xhr) {
+							console.log(data);
+							alert("Usuário enviado com sucesso!");
+						},
+						error : function(xhr, textStatus, errorThrown) {
+							alert("Erro no consumo do serviço!");
+						}
+					});
+				}
+			});
+		});
+		</script>
+		
+	</head>
+	
+	<body>
+		<div class="container">
+		  <h2>Enviar usuário para o Kafka</h2>
+		  <form action="#">
+		    <div class="form-group">
+		      <label for="nome">Nome:</label>
+		      <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome">
+		    </div>
+		    <div class="form-group">
+		      <label for="idade">Idade:</label>
+		      <input type="number" class="form-control" id="idade" placeholder="Idade" name="idade">
+		    </div>
+		    <button type="button" id="salvar" name="salvar" class="btn btn-default">Enviar</button>
+		  </form>
+		</div>
+	</body>
+</html>
