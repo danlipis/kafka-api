@@ -17,7 +17,7 @@
 
 				if (pessoa.nome && pessoa.idade) {
 					$.ajax({
-						url : 'http://34.229.110.61:8080/kafka',
+						url : '/kafka',
 						type : 'POST',
 						contentType : "application/json; charset=utf-8",
 						data : JSON.stringify(pessoa),
