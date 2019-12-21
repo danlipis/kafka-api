@@ -9,7 +9,7 @@ import br.com.desafioitu.kafka.dto.Usuario;
 @Service
 public class Producer {
 
-	private static final String TOPIC = "test";
+	private static final String TOPIC = "secure-topic";
 
 	@Autowired
 	private KafkaTemplate<String, Usuario> kafkaTemplate;
